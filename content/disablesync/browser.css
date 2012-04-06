@@ -1,0 +1,9 @@
+/* application menu */
+#sync-setup-appmenu,
+#sync-syncnowitem-appmenu,
+/* menu bar */
+#sync-setup,
+#sync-syncnowitem {
+	display: none !important;
+	-moz-user-focus: ignore !important;
+}
