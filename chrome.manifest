@@ -2,4 +2,4 @@ content	disablesync	jar:chrome/disablesync.jar!/content/disablesync/
 
 overlay	chrome://browser/content/browser.xul	chrome://disablesync/content/browser.xul
 overlay	chrome://browser/content/preferences/preferences.xul	chrome://disablesync/content/preferences.xul
-
+overlay	chrome://global/content/customizeToolbar.xul	chrome://disablesync/content/customizeToolbar.xul
