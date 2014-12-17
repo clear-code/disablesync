@@ -6,17 +6,18 @@ const kCID  = Components.ID('{611950d0-85a3-11e4-b4a9-0800200c9a66}');
 const kID   = '@clear-code.com/disablesync/startup;1';
 const kNAME = 'DisableSyncStartupService';
 
-const ObserverService = Components
-		.classes['@mozilla.org/observer-service;1']
-		.getService(Components.interfaces.nsIObserverService);
+const Cc = Components.classes;
+const Ci = Components.interfaces;
+Components.utils.import('resource://gre/modules/XPCOMUtils.jsm');
 
-const SSS = Components
-		.classes['@mozilla.org/content/style-sheet-service;1']
-		.getService(Components.interfaces.nsIStyleSheetService);
+const ObserverService = Cc['@mozilla.org/observer-service;1']
+		.getService(Ci.nsIObserverService);
 
-const IOService = Components
-		.classes['@mozilla.org/network/io-service;1']
-		.getService(Components.interfaces.nsIIOService);
+const SSS = Cc['@mozilla.org/content/style-sheet-service;1']
+		.getService(Ci.nsIStyleSheetService);
+
+const IOService = Cc['@mozilla.org/network/io-service;1']
+		.getService(Ci.nsIIOService);
  
 function DisableSyncStartupService() { 
 }
@@ -57,66 +58,16 @@ DisableSyncStartupService.prototype = {
   
 	QueryInterface : function(aIID) 
 	{
-		if(!aIID.equals(Components.interfaces.nsIObserver) &&
-			!aIID.equals(Components.interfaces.nsISupports)) {
+		if(!aIID.equals(Ci.nsIObserver) &&
+			!aIID.equals(Ci.nsISupports)) {
 			throw Components.results.NS_ERROR_NO_INTERFACE;
 		}
 		return this;
 	}
  
 }; 
- 	 
-var gModule = { 
-	registerSelf : function(aCompMgr, aFileSpec, aLocation, aType)
-	{
-		aCompMgr = aCompMgr.QueryInterface(Components.interfaces.nsIComponentRegistrar);
-		aCompMgr.registerFactoryLocation(
-			kCID,
-			kNAME,
-			kID,
-			aFileSpec,
-			aLocation,
-			aType
-		);
 
-		var catMgr = Components.classes['@mozilla.org/categorymanager;1']
-					.getService(Components.interfaces.nsICategoryManager);
-		catMgr.addCategoryEntry('app-startup', kNAME, kID, true, true);
-	},
-
-	getClassObject : function(aCompMgr, aCID, aIID)
-	{
-		return this.factory;
-	},
-
-	factory : {
-		QueryInterface : function(aIID)
-		{
-			if (!aIID.equals(Components.interfaces.nsISupports) &&
-				!aIID.equals(Components.interfaces.nsIFactory)) {
-				throw Components.results.NS_ERROR_NO_INTERFACE;
-			}
-			return this;
-		},
-		createInstance : function(aOuter, aIID)
-		{
-			return new DisableSyncStartupService();
-		}
-	},
-
-	canUnload : function(aCompMgr)
-	{
-		return true;
-	}
-};
-
-try {
-	Components.utils.import('resource://gre/modules/XPCOMUtils.jsm');
-	var NSGetFactory = XPCOMUtils.generateNSGetFactory([DisableSyncStartupService]);
-}
-catch(e) {
-	var NSGetModule = function(aCompMgr, aFileSpec) {
-			return gModule;
-		};
-}
- 
+if (XPCOMUtils.generateNSGetFactory)
+  var NSGetFactory = XPCOMUtils.generateNSGetFactory([DisableSyncStartupService]);
+else
+  var NSGetModule = XPCOMUtils.generateNSGetModule([DisableSyncStartupService]);
