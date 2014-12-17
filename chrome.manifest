@@ -12,6 +12,6 @@ component	{611950d0-85a3-11e4-b4a9-0800200c9a66}	components/Startup.js
 contract	@clear-code.com/disablesync/startup;1	{611950d0-85a3-11e4-b4a9-0800200c9a66}
 category	profile-after-change	DisableSyncStartupService	@clear-code.com/disablesync/startup;1
 
-component {20300fc0-85ab-11e4-b4a9-0800200c9a66} components/AddonManagerBlocker.js
+component {20300fc0-85ab-11e4-b4a9-0800200c9a66} components/SyncPagesBlocker.js
 contract @clear-code.com/disablesync/syncpagesblocker;1 {20300fc0-85ab-11e4-b4a9-0800200c9a66}
 category content-policy SyncPagesBlocker @clear-code.com/disablesync/syncpagesblocker;1
