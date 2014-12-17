@@ -7,3 +7,7 @@ content	disablesync	jar:chrome/disablesync.jar!/content/disablesync/
 overlay	chrome://browser/content/browser.xul	chrome://disablesync/content/browser.xul
 overlay	chrome://browser/content/preferences/preferences.xul	chrome://disablesync/content/preferences.xul
 overlay	chrome://global/content/customizeToolbar.xul	chrome://disablesync/content/customizeToolbar.xul
+
+component	{611950d0-85a3-11e4-b4a9-0800200c9a66}	components/Startup.js
+contract	@clear-code.com/disablesync/startup;1	{611950d0-85a3-11e4-b4a9-0800200c9a66}
+category	profile-after-change	DisableSyncStartupService	@clear-code.com/disablesync/startup;1
