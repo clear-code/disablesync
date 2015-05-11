@@ -16,3 +16,14 @@
       visibility: collapse !important;
     }
 }
+
+@-moz-document
+  url-prefix("about:preferences"),
+  url-prefix("chrome://browser/content/preferences/in-content/preferences.xul")
+  {
+    *|*#category-sync
+    {
+      display: none !important;
+      visibility: collapse !important;
+    }
+}
