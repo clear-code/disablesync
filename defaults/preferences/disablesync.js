@@ -15,5 +15,5 @@ pref("services.sync.serverURL", "");
 pref("services.sync.statusURL", "");
 pref("services.sync.syncKeyHelpURL", "");
 pref("services.sync.termsURL", "");
-pref("identity.fxaccounts.remote.oauth.uri","");
-pref("identity.fxaccounts.remote.profile.uri","");
+pref("identity.fxaccounts.remote.oauth.uri", "");
+pref("identity.fxaccounts.remote.profile.uri", "");
