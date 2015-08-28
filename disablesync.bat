@@ -1,1 +1,1 @@
-bash makexpi.sh -n disablesync
+bash makexpi.sh -n disablesync -o

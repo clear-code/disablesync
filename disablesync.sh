@@ -1,3 +1,3 @@
 #!/bin/sh
 
-./makexpi.sh -n disablesync
+./makexpi.sh -n disablesync -o

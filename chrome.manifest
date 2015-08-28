@@ -2,7 +2,7 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-content	disablesync	jar:chrome/disablesync.jar!/content/disablesync/
+content	disablesync	content/disablesync/
 
 overlay	chrome://browser/content/browser.xul	chrome://disablesync/content/browser.xul
 overlay	chrome://browser/content/preferences/preferences.xul	chrome://disablesync/content/preferences.xul
