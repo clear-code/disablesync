@@ -10,6 +10,12 @@ const Cc = Components.classes;
 const Ci = Components.interfaces;
 Components.utils.import('resource://gre/modules/XPCOMUtils.jsm');
 
+const BLOCKED_URIS = [
+  'about:sync-tabs',
+  'about:sync-log',
+  'about:accounts'
+];
+
 const ObserverService = Cc['@mozilla.org/observer-service;1']
 		.getService(Ci.nsIObserverService);
 
@@ -18,6 +24,13 @@ const SSS = Cc['@mozilla.org/content/style-sheet-service;1']
 
 const IOService = Cc['@mozilla.org/network/io-service;1']
 		.getService(Ci.nsIIOService);
+
+const BLOCKED_URIS_PATTERN = new RegExp('^(?:' +
+                                          BLOCKED_URIS.map(function(aURI) {
+                                            return aURI.replace(/([\\^\$\*\+\?\.\(\)\|\{\}\[\]])/g, '\\$1');
+                                          }).join('|') +
+                                          ')',
+                                        'i');
  
 function DisableSyncStartupService() { 
 }
@@ -39,12 +52,19 @@ DisableSyncStartupService.prototype = {
 				ObserverService.removeObserver(this, 'final-ui-startup');
 				this.init();
 				return;
+
+			case 'chrome-document-global-created':
+				if (BLOCKED_URIS_PATTERN.test(aSubject.location.href))
+					aSubject.location.replace('about:blank');
+				return;
 		}
 	},
  
 	init : function() 
 	{
 		this.registerGlobalStyleSheet();
+
+		ObserverService.addObserver(this, 'chrome-document-global-created', false);
 	},
  
 	registerGlobalStyleSheet : function() 
