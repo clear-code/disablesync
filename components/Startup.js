@@ -55,6 +55,7 @@ DisableSyncStartupService.prototype = {
 				return;
 
 			case 'chrome-document-global-created':
+			case 'content-document-global-created': // about:sync-log
 				if (BLOCKED_URIS_PATTERN.test(aSubject.location.href))
 					aSubject.location.replace('about:blank');
 				return;
@@ -66,6 +67,7 @@ DisableSyncStartupService.prototype = {
 		this.registerGlobalStyleSheet();
 
 		ObserverService.addObserver(this, 'chrome-document-global-created', false);
+		ObserverService.addObserver(this, 'content-document-global-created', false);
 	},
  
 	registerGlobalStyleSheet : function() 
