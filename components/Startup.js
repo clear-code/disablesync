@@ -13,6 +13,7 @@ Components.utils.import('resource://gre/modules/XPCOMUtils.jsm');
 const BLOCKED_URIS = [
   'about:sync-tabs',
   'about:sync-log',
+  'about:sync-progress',
   'about:accounts'
 ];
 

@@ -6,6 +6,7 @@ const ID = 'disableaddons@clear-code.com';
 const BLOCKED_URIS = [
   'about:sync-tabs',
   'about:sync-log',
+  'about:sync-progress',
   'about:accounts'
 ];
 
