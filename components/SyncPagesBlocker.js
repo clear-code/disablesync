@@ -46,32 +46,18 @@ SyncPagesBlocker.prototype = {
     return this;
   },
 
-  TYPE_OTHER       : Ci.nsIContentPolicy.TYPE_OTHER,
-  TYPE_SCRIPT      : Ci.nsIContentPolicy.TYPE_SCRIPT,
-  TYPE_IMAGE       : Ci.nsIContentPolicy.TYPE_IMAGE,
-  TYPE_STYLESHEET  : Ci.nsIContentPolicy.TYPE_STYLESHEET,
-  TYPE_OBJECT      : Ci.nsIContentPolicy.TYPE_OBJECT,
-  TYPE_DOCUMENT    : Ci.nsIContentPolicy.TYPE_DOCUMENT,
-  TYPE_SUBDOCUMENT : Ci.nsIContentPolicy.TYPE_SUBDOCUMENT,
-  TYPE_REFRESH     : Ci.nsIContentPolicy.TYPE_REFRESH,
-  ACCEPT           : Ci.nsIContentPolicy.ACCEPT,
-  REJECT_REQUEST   : Ci.nsIContentPolicy.REJECT_REQUEST,
-  REJECT_TYPE      : Ci.nsIContentPolicy.REJECT_TYPE,
-  REJECT_SERVER    : Ci.nsIContentPolicy.REJECT_SERVER,
-  REJECT_OTHER     : Ci.nsIContentPolicy.REJECT_OTHER,
-
   shouldLoad: function (aContentType, aContentLocation, aRequestOrigin, aContext, aMimeTypeGuess, aExtra) {
     if (BLOCKED_URIS_PATTERN.test(aContentLocation.spec)) {
       this.processBlockedContext(aContext);
       Components.utils.reportError(new Error(ID + ': ' + aContentLocation.spec + ' is blocked!'));
-      return this.REJECT_REQUEST;
+      return Ci.nsIContentPolicy.REJECT_REQUEST;
     }
 
-    return this.ACCEPT;
+    return Ci.nsIContentPolicy.ACCEPT;
   },
 
   shouldProcess: function (aContentType, aContentLocation, aRequestOrigin, aContext, aMimeTypeGuess, aExtra) {
-    return this.ACCEPT;
+    return Ci.nsIContentPolicy.ACCEPT;
   },
 
   processBlockedContext: function (aContext) {
