@@ -16,7 +16,8 @@
 #sync-tabs-menuitem2,
 /* menu bar */
 #sync-setup,
-#sync-syncnowitem {
+#sync-syncnowitem,
+#menu_tabsSidebar {
 	display: none !important;
 	-moz-user-focus: ignore !important;
 }
