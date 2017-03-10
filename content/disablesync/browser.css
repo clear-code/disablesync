@@ -8,6 +8,8 @@
 #PanelUI-fxa-status,
 /* tab context menu */
 #sync-tabs-menuitem,
+#context_sendTabToDevice,
+#context_sendTabToDevice_separator,
 /* browser bottom */
 #syncLinksContainer,
 /* application menu */
