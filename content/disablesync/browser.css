@@ -19,7 +19,10 @@
 /* menu bar */
 #sync-setup,
 #sync-syncnowitem,
-#menu_tabsSidebar {
+#menu_tabsSidebar,
+/* customizable menu */
+.subviewbutton[label='同期タブ'],
+.subviewbutton[label='Synced Tabs'] {
 	display: none !important;
 	-moz-user-focus: ignore !important;
 }
